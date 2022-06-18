@@ -4,5 +4,6 @@ data class CryptoItem(
     val id: Int,
     val name: String,
     val price: Double,
-    val ImageUrl: String
+    val ImageUrl: String,
+    val lastUpdate: String?
 )

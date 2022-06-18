@@ -1,13 +1,16 @@
 package com.example.appaboutcrypto2.domain.repositiry
 
 import androidx.lifecycle.LiveData
+import com.example.appaboutcrypto2.data.net.model.NetModel
 import com.example.appaboutcrypto2.domain.model.CryptoItem
+import retrofit2.Response
 
 interface CryptoRepository {
 
-    fun loadDataFromNet()
+    suspend fun loadDataFromNet():Response<NetModel>
 
     fun getDataFromDB():LiveData<List<CryptoItem>>
 
-    suspend fun addItemToDB(cryptoItem: CryptoItem)
+    fun addItemToDB(cryptoItem: CryptoItem)
+
 }

@@ -10,6 +10,9 @@ data class CryptoItemDBType(
     val id: Int,
     val name: String,
     val inUsd: Double,
-    val ImageUrl: String
+    val ImageUrl: String,
+    val lastUpdate: String?
+
+  //  lastUpdate = convertTimestampToTime(dbModel.lastUpdate),
 )
 

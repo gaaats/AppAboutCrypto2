@@ -1,32 +1,36 @@
 package com.example.appaboutcrypto2.presentation
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.appaboutcrypto2.domain.AddItemToDB
 import com.example.appaboutcrypto2.domain.GetDataFromDB
 import com.example.appaboutcrypto2.domain.model.CryptoItem
-import com.example.appaboutcrypto2.domain.repositiry.CryptoRepositoryImpl
+import com.example.appaboutcrypto2.data.CryptoRepositoryImpl
+import com.example.appaboutcrypto2.data.database.CryptoDatabase
+import com.example.appaboutcrypto2.data.net.model.NetModel
+import com.example.appaboutcrypto2.domain.LoadDataFromNet
 import kotlinx.coroutines.launch
-import java.util.*
+import retrofit2.Response
 import kotlin.random.Random
 
-class MainVievModel( application: Application) : AndroidViewModel(application) {
+class MainVievModel(application: Application) : AndroidViewModel(application) {
+
+    private val cryptoDAO = CryptoDatabase.getInstance(application).cryptoDAO()
+
 
     private val cryptoRepositoryImpl = CryptoRepositoryImpl(application)
 
     private val addItemToDB = AddItemToDB(cryptoRepositoryImpl)
     private val getDataFromDB = GetDataFromDB(cryptoRepositoryImpl)
+    private val loadDataFromNet = LoadDataFromNet(cryptoRepositoryImpl)
+
+    private var _myResponse = MutableLiveData<Response<NetModel>>()
+    val myResponse: LiveData<Response<NetModel>>
+        get() = _myResponse
 
 
-    private val _cryptoList = getDataFromDB.getDataFromDB()
-    val cryptoList: LiveData<List<CryptoItem>>
-        get() = _cryptoList
-
-    init {
-        addItemToDB
-    }
+    var cryptoList = getDataFromDB.getDataFromDB() as MutableLiveData<List<CryptoItem>>
 
     fun addItem() {
         val element =
@@ -34,11 +38,31 @@ class MainVievModel( application: Application) : AndroidViewModel(application) {
                 0,
                 "lol ${Random.nextInt(10, 100)}",
                 Random.nextDouble(100.0, 500.0),
-                "hhhh"
+                "hhhh",
+                ""
             )
+        addItemToDB.addItemToDB(element)
+    }
 
+    fun deleteItem() {
+        cryptoDAO.deleteAllUsers()
+    }
+
+    fun loadDataFromNEt() {
         viewModelScope.launch {
-            addItemToDB.addItemToDB(element)
+            val result = loadDataFromNet.loadDataFromNet()
+            if (result.isSuccessful){
+                Log.d("nettt", "yeeees")
+                result.body()?.let {
+                    it.Data.forEach {
+                        Log.d("nettt", "From net: ${it.CoinInfo.FullName}")
+                        Log.d("nettt", "____________________________")
+                    }
+                }
+            } else{
+                Log.d("nettt", "nooooooooooooooooooooooooooooooo")
+            }
+//             _myResponse.value = result
         }
     }
 

@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AppAboutCrypto2/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2095" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AppAboutCrypto2/app/src/main/res/drawable/monetization.xml" value="0.2095" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AppAboutCrypto2/app/src/main/res/layout/activity_main.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AppAboutCrypto2/app/src/main/res/layout/single_item_for_recycler_crypto.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AppAboutCrypto2/app/src/main/res/menu/delete_menu.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

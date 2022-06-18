@@ -1,10 +1,12 @@
 package com.example.appaboutcrypto2.domain
 
+import com.example.appaboutcrypto2.data.net.model.NetModel
 import com.example.appaboutcrypto2.domain.repositiry.CryptoRepository
+import retrofit2.Response
 
 class LoadDataFromNet(private val cryptoRepository: CryptoRepository) {
 
-    fun loadDataFromNet(){
-        cryptoRepository.loadDataFromNet()
+    suspend fun loadDataFromNet(): Response<NetModel> {
+        return cryptoRepository.loadDataFromNet()
     }
 }

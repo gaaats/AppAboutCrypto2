@@ -38,7 +38,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -81,11 +81,14 @@ dependencies {
 
     // Annotation processor VIEVMODELS
     implementation("androidx.lifecycle:lifecycle-common-java8:2.4.1")
-    kapt("androidx.lifecycle:lifecycle-compiler:2.4.1")
+    kapt "androidx.lifecycle:lifecycle-compiler:2.4.1"
 
     // optional - ReactiveStreams support for LiveData
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.1")
 
     //PICASSO
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //COIL
+    implementation "io.coil-kt:coil:2.1.0"
 }

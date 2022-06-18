@@ -16,6 +16,10 @@ interface CryptoDAO {
 //    @Query("SELECT * FROM crypto_table WHERE id=:cryptoId LIMIT 1")
 //    suspend fun getSingleItem (cryptoId:String):CryptoItem
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addItemToCryptoList (cryptoItemDBType: CryptoItemDBType)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addItemToCryptoList (cryptoItemDBType: CryptoItemDBType)
+
+    @Query("DELETE FROM crypto_table")
+    fun deleteAllUsers()
 }
+///lolo

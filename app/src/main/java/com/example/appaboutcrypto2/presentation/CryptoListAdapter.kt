@@ -3,6 +3,7 @@ package com.example.appaboutcrypto2.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import coil.load
 import com.example.appaboutcrypto2.R
 import com.example.appaboutcrypto2.domain.model.CryptoItem
 
@@ -24,10 +25,10 @@ class CryptoListAdapter :
             tvName.text = currentItem.name
             tvPrice.text = currentItem.price.toString()
             img.setImageResource(R.drawable.monetization)
-//            val pathToImage = Constance.BASE_IMAGE_URL + currentItem.ImageUrl
-//            img.load(pathToImage){
-//                placeholder(R.drawable.monetization)
-//            }
+            img.load(currentItem.ImageUrl){
+                placeholder(R.drawable.monetization)
+            }
+            tvTime.text = currentItem.lastUpdate
         }
     }
 }
