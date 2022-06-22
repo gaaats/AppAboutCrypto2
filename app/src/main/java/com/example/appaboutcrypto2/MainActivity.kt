@@ -2,19 +2,13 @@ package com.example.appaboutcrypto2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.appaboutcrypto2.databinding.ActivityMainBinding
-import com.example.appaboutcrypto2.presentation.CryptoListAdapter
+import com.example.appaboutcrypto2.presentation.adapters.CryptoListAdapter
 import com.example.appaboutcrypto2.presentation.MainVievModel
 import com.example.appaboutcrypto2.presentation.MainVievModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 

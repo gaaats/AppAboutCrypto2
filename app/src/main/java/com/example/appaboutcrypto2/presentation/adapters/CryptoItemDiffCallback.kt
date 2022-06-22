@@ -1,4 +1,4 @@
-package com.example.appaboutcrypto2.presentation
+package com.example.appaboutcrypto2.presentation.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.appaboutcrypto2.domain.model.CryptoItem

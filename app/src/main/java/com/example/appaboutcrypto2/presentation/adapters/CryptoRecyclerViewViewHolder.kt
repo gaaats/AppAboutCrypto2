@@ -1,4 +1,4 @@
-package com.example.appaboutcrypto2.presentation
+package com.example.appaboutcrypto2.presentation.adapters
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
