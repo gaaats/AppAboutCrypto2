@@ -23,7 +23,7 @@ abstract class CryptoDatabase : RoomDatabase() {
         }
 
 
-        fun getInstance(application: Application): CryptoDatabase {
+        fun getInstance(context: Context): CryptoDatabase {
 
             val tempInstance = INSTANCE
             if (tempInstance != null) {
@@ -31,7 +31,7 @@ abstract class CryptoDatabase : RoomDatabase() {
             }
             synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    application.applicationContext,
+                    context.applicationContext,
                     CryptoDatabase::class.java,
                     DB_NAME
                 )

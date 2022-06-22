@@ -7,7 +7,7 @@ import retrofit2.Response
 
 interface CryptoRepository {
 
-    suspend fun loadDataFromNet():Response<NetModel>
+    suspend fun loadDataFromNet()
 
     fun getDataFromDB():LiveData<List<CryptoItem>>
 

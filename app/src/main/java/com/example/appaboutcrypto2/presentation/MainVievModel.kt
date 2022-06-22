@@ -32,6 +32,10 @@ class MainVievModel(application: Application) : AndroidViewModel(application) {
 
     var cryptoList = getDataFromDB.getDataFromDB() as MutableLiveData<List<CryptoItem>>
 
+    init {
+        loadDataFromNEt()
+    }
+
     fun addItem() {
         val element =
             CryptoItem(
@@ -50,20 +54,21 @@ class MainVievModel(application: Application) : AndroidViewModel(application) {
 
     fun loadDataFromNEt() {
         viewModelScope.launch {
-            val result = loadDataFromNet.loadDataFromNet()
-            if (result.isSuccessful){
-                Log.d("nettt", "yeeees")
-                result.body()?.let {
-                    it.Data.forEach {
-                        Log.d("nettt", "From net: ${it.CoinInfo.FullName}")
-                        Log.d("nettt", "____________________________")
-                    }
-                }
-            } else{
-                Log.d("nettt", "nooooooooooooooooooooooooooooooo")
-            }
-//             _myResponse.value = result
+            loadDataFromNet.loadDataFromNet()
+//            if (result.isSuccessful){
+//                Log.d("nettt", "yeeees")
+//                result.body()?.let {
+//                    it.Data.forEach {
+//                        Log.d("nettt", "From net: ${it.CoinInfo.FullName}")
+//                        Log.d("nettt", "____________________________")
+//                    }
+//                }
+//            } else{
+//                Log.d("nettt", "nooooooooooooooooooooooooooooooo")
+//            }
+////             _myResponse.value = result
+//        }
         }
-    }
 
+    }
 }

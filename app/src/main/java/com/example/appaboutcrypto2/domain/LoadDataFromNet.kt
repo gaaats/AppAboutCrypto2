@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class LoadDataFromNet(private val cryptoRepository: CryptoRepository) {
 
-    suspend fun loadDataFromNet(): Response<NetModel> {
+    suspend fun loadDataFromNet() {
         return cryptoRepository.loadDataFromNet()
     }
 }
