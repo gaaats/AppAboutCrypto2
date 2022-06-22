@@ -7,23 +7,25 @@ import com.example.appaboutcrypto2.domain.AddItemToDB
 import com.example.appaboutcrypto2.domain.GetDataFromDB
 import com.example.appaboutcrypto2.domain.model.CryptoItem
 import com.example.appaboutcrypto2.data.CryptoRepositoryImpl
+import com.example.appaboutcrypto2.data.database.CryptoDAO
 import com.example.appaboutcrypto2.data.database.CryptoDatabase
 import com.example.appaboutcrypto2.data.net.model.NetModel
 import com.example.appaboutcrypto2.domain.LoadDataFromNet
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 import kotlin.random.Random
 
-class MainVievModel(application: Application) : AndroidViewModel(application) {
+class MainVievModel @Inject constructor(
+    private val application: Application,
+
+//    private val cryptoDAO: CryptoDAO,
+    private val addItemToDB: AddItemToDB,
+    private val getDataFromDB: GetDataFromDB,
+    private val loadDataFromNet: LoadDataFromNet
+    ) : ViewModel() {
 
     private val cryptoDAO = CryptoDatabase.getInstance(application).cryptoDAO()
-
-
-    private val cryptoRepositoryImpl = CryptoRepositoryImpl(application)
-
-    private val addItemToDB = AddItemToDB(cryptoRepositoryImpl)
-    private val getDataFromDB = GetDataFromDB(cryptoRepositoryImpl)
-    private val loadDataFromNet = LoadDataFromNet(cryptoRepositoryImpl)
 
     private var _myResponse = MutableLiveData<Response<NetModel>>()
     val myResponse: LiveData<Response<NetModel>>

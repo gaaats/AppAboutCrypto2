@@ -6,22 +6,31 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.appaboutcrypto2.databinding.ActivityMainBinding
+import com.example.appaboutcrypto2.di.CryptoAPP
 import com.example.appaboutcrypto2.presentation.adapters.CryptoListAdapter
 import com.example.appaboutcrypto2.presentation.MainVievModel
-import com.example.appaboutcrypto2.presentation.MainVievModelFactory
+import com.example.appaboutcrypto2.presentation.adapters.VievModelFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: VievModelFactory
+
+    private val component by lazy {
+        (application as CryptoAPP).component
+    }
 
     private val adapter by lazy {
         CryptoListAdapter()
     }
-    private val vievModel by lazy {
-        ViewModelProvider(this, MainVievModelFactory(application))[MainVievModel::class.java]
-    }
+    private lateinit var vievModel: MainVievModel
 
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
+        vievModel = ViewModelProvider(this, viewModelFactory)[MainVievModel::class.java]
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.recyckerContainer.adapter = adapter
